@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden; 
+      background: black;
+    }
+
+    #container {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    #image-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    #custom-container {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      max-width: 80%;
+      z-index: 1;
+    }
+
+    #custom-text {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 13px;
+      background: rgba(200, 200, 200, 0.8); /* Grey background color with some transparency */
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .arrow-container {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      z-index: 2;
+    }
+
+    .arrow {
+      font-size: 24px;
+      cursor: pointer;
+      background: white;
+      border: 1px solid #ccc;
+      padding: 5px;
+    }
+
+    #image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      let currentImageIndex = 0;
+      const images = [
+        'image8.jpg',
+        'image1.jpg',
+        'image1.jpg',
+        'image2.jpg',
+        'image3.jpg',
+        'image3.jpg',
+        'image5.jpg',
+        'image5.jpg',
+        'image3.jpg',
+        'image3.jpg',
+        'image3.jpg',
+        'image3.jpg',
+        'image3.jpg',
+        'image3.jpg',
+        'image3.jpg',
+        'image3.jpg',
+        'image3.jpg',
+        'image3.jpg',
+        'image3.jpg',
+        'image3.jpg',
+        'image3.jpg',
+        'image3.jpg',
+        'image3.jpg',
+        'image3.jpg',
+        'image7.jpg',
+        // Add more image filenames as needed
+      ];
+
+      const baseUrl = 'https://raw.githubusercontent.com/jim919/U/main/images/';
+
+      const container = document.getElementById('container');
+      const imageContainer = document.getElementById('image-container');
+      const customText = document.getElementById('custom-text');
+
+      const fullscreenButton = document.createElement('button');
+      fullscreenButton.textContent = 'Toggle Fullscreen';
+      fullscreenButton.id = 'fullscreen-button';
+      fullscreenButton.style.position = 'fixed';
+      fullscreenButton.style.top = '10px';
+      fullscreenButton.style.right = '10px';
+      document.body.appendChild(fullscreenButton);
+
+      fullscreenButton.addEventListener('click', toggleFullScreen);
+
+      function toggleFullScreen() {
+        if (!document.fullscreenElement) {
+          container.requestFullscreen().catch(err => {
+            console.error(`Error attempting to enable full-screen mode: ${err.message}`);
+          });
+        } else {
+          document.exitFullscreen();
+        }
+      }
+
+      function showImage(index) {
+        if (index < 0) {
+          currentImageIndex = images.length - 1;
+        } else if (index >= images.length) {
+          currentImageIndex = 0;
+        } else {
+          currentImageIndex = index;
+        }
+
+        const imageUrl = images[currentImageIndex];
+        const imagePath = baseUrl + imageUrl;
+
+        imageContainer.innerHTML = `<img src="${imagePath}" alt="Image">`;
+
+        // Display custom text based on the current image index
+        switch (currentImageIndex) {
+          case 0:
+            customText.textContent = "";
+            break;
+          case 1:
+            customText.textContent = "O θειος μου ήταν ένας βαθύτατα εγωκεντρικός χαρακτήρας. Και όμως, παρά την συχνά αντιφατική του προσωπικότητα πάντα πετύχαινε να προκαλεί τον θαυμασμό και σεβασμό των γύρω του.";
+            break;
+          case 2:
+            customText.textContent = "Με συγχωρείτε. Ο ρόλος σας αυτή την στιγμή είναι άλλος.";
+            break;
+          case 3:
+            customText.textContent = "Βρίσκεστε εδώ, γιατί το έργο της ζωής του είναι σε κατάσταση παρακμής και δεν πρόκειται να επιτρέψω να αμαυρωθεί η φήμη μου εξαιτίας των ανοησιών του θείου μου.";
+            break;
+          case 4:
+            customText.textContent = "Αυτός ο θησαυρός θα μου δώσει μια ευκαιρία να ξεκινήσω από την αρχή και σας υπόσχομαι πως το δικό σας μερίδιο θα είναι αρκετό για να ζήσετε δίχως καμία έννοια.";
+            break;
+          case 5:
+            customText.textContent = "Ας αρχίσουμε το κυνήγι!";
+            break;
+          case 6:
+            customText.textContent = "Θεωρώ πως ήταν γνωστή η αγάπη του θείου μου για τις τέχνες ακόμη και σε εσάς, είτε μιλάμε για λογοτεχνία είτε για μουσική. Ωστόσο, λίγοι ήξεραν την ασχολία του με το σκάκι.";
+            break;
+          case 7:
+            customText.textContent = "Δεν ήμουν ποτέ άτομο το οποίο διέθετε ισχυρές στρατηγικές ικανότητες και για αυτόν τον λόγο πάντα έβγαινα ηττημένος απέναντι του.";
+            break;
+          case 8:
+            customText.textContent = "Στα έγγραφα της διαθήκης δίνεται το εξής σημείωμα. Πηγαίνετε στην κοντινότερη σκακιέρα και τοποθετήστε τα πιόνια στην θέση που πρέπει.";
+            break;
+          case 9:
+            customText.textContent = "Υπέροχα. Φαίνεται πως δεν είσαστε όσο άμυαλοι όσο αρχικά περίμενα. Λοιπόν, το τέσσερα είναι αριθμός με ιδιαίτερο υπόβαθρο στην Πυθαγόρειο αριθμοσοφία.";
+            break;
+          case 10:
+            customText.textContent = "Εκφράζει κυρίως τα σταθερά ανοίγματα στον κόσμο, την πρακτικότητα και την διαρκή κίνηση. Σε αυτό το σημείο, σας συμβουλεύω να περιηγηθείτε στον χώρο. Όλο και κάτι θα εντοπίσετε που να περιέχει το νούμερο τέσσερα.";
+            break;
+          case 11:
+            customText.textContent = "Ομολογώ πως με έχετε εντυπωσιάσει. Είμαι σχεδόν σίγουρος πως θα νικήσουμε την ομάδα της Μαρίας. Λοιπόν, αξιοποιήστε την πυξίδα που βρήκατε, υπάρχει μεγάλη πιθανότητα να σας οδηγήσει στο επόμενο στοιχείο.";
+            break;
+          case 12:
+            customText.textContent = "Επίσης, όταν λήξει αυτό το ηλίθιο παιχνίδι θυμίστε μου να σας ξαναπροσλάβω.";
+            break;
+          case 13:
+            customText.textContent = "Βρήκατε ένα εισιτήριο. Βιαστείτε! Δώστε το στον συνεργάτη του θείου μου για να σας επιτρέψει την πρόσβαση στην αίθουσα τελετών.";
+            break;
+          case 14:
+            customText.textContent = "Και ναι, προσπάθησα να τον δωροδοκήσω τις προάλλες αλλά δεν δέχθηκε. Η αφοσίωση κάποιων ατόμων για τον θείο μου είναι εμετική.";
+            break;
+          case 15:
+            customText.textContent = "Κοιτάξτε! Το σεντούκι στο βάθος του διαδρόμου θα πρέπει να περιέχει τον θησαυρό.";
+            break;
+          case 16:
+            customText.textContent = "Είναι κλειδωμένο... Κάπου εδω μέσα θα βρίσκεται το κλειδί. Ίσως αυτό το χρωματικό διάγραμμα να σας βοηθήσει. Βρισκόμαστε τόσο κοντά στον στόχο μας. Δεν μπορείτε να φανταστείτε τον ενθουσιασμό μου.";
+            break;
+          case 17:
+            customText.textContent = "Η καρδιά του κοίτεται επιχρυσωμμένη μέσα στο σεντούκι. Θα πλουτίσω! Για σταθείτε μισό λεπτό. Υπάρχει ένας μηχανισμός αν κοιτάξετε καλά.";
+            break;
+          case 18:
+            customText.textContent = "Ένα σημείωμα... Διαβάστε το μου.";
+            break;
+          case 19:
+            customText.textContent = "Αγαπητέ Ρόμπερτ, θα προσπαθήσω να κρατήσω αυτό το γράμμα όσο πιο σύντομο γίνεται. Η καρδιά μου... ανήκει και σε εσένα και στην Μαρία.";
+            break;
+          case 20:
+            customText.textContent = "Ο πλούτος μου ωστόσο ανήκει στην ακαδημία. Θέλω να ξέρεις πως είμαι περήφανος για σένα. Τις τελευταίες ημέρες που στήνω αυτό το αλλόκοτο κυνήγι θησαυρού, ομολογώ πως σας έχω συνέχεια στο μυαλό μου.";
+            break; 
+          case 21:
+            customText.textContent = "Αν και ο θάνατος μου πλησιάζει ολοένα και περισσότερο, νιώθω πιο ζωντανός από ποτέ. Το μόνο που μετανιώνω είναι ότι δεν ήμουν πάντα όσο ανοιχτός θα έπρεπε απέναντι σας.";
+            break; 
+          case 22:
+            customText.textContent = "Ξέρεις... συχνά καταφεύγω στον κόσμο των βιβλίων, γιατί πολύ απλά φοβάμαι. Οι τέχνες έχουν έναν μαγικό τρόπο να περιγράφουν αυτά που νιώθουμε ή αυτά που θέλουμε να πούμε.";
+            break; 
+          case 23:
+            customText.textContent = "Τέλος πάντων. Γνωρίζω καλά πως θα πάρεις την σωστή απόφαση. Σου εύχομαι καλή τύχη στην ζωή σου. Αντίο.";
+            break;
+          case 24:
+            customText.textContent = "";
+            break;
+          
+          // Add more cases as needed
+          default:
+            customText.textContent = "";
+        }
+      }
+
+      function showNextImage() {
+        showImage(currentImageIndex + 1);
+      }
+
+      function showPreviousImage() {
+        showImage(currentImageIndex - 1);
+      }
+
+      document.getElementById('left-arrow').addEventListener('click', showPreviousImage);
+      document.getElementById('right-arrow').addEventListener('click', showNextImage);
+
+      showImage(currentImageIndex);
+    });
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div id="image-container"></div>
+    <div id="custom-container">
+      <div id="custom-text"></div>
+    </div>
+    <div class="arrow-container">
+      <div id="left-arrow" class="arrow">&lt;</div>
+      <div id="right-arrow" class="arrow">&gt;</div>
+    </div>
+  </div>
+</body>
+</html>

@@ -39,7 +39,7 @@
     #custom-text {
       font-family: 'Open Sans', sans-serif;
       font-size: 13px;
-      background: rgba(200, 200, 200, 0.8); /* Grey background color with some transparency */
+      background: rgba(200, 200, 200, 0.8); 
       padding: 10px;
       border-radius: 5px;
     }
@@ -96,7 +96,7 @@
         'image4.jpg',
         'image4.jpg',
         'image7.jpg',
-        // Add more image filenames as needed
+        'image10.jpg',
       ];
 
       const baseUrl = 'https://raw.githubusercontent.com/jim919/U/main/images/';
@@ -139,7 +139,6 @@
 
         imageContainer.innerHTML = `<img src="${imagePath}" alt="Image">`;
 
-        // Display custom text based on the current image index
         switch (currentImageIndex) {
           case 0:
             customText.textContent = "";
@@ -217,7 +216,6 @@
             customText.textContent = "";
             break;
           
-          // Add more cases as needed
           default:
             customText.textContent = "";
         }
